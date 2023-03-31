@@ -3,7 +3,7 @@ This is a custom world format that is the next generation of the SlimeFormat, th
 
 # Why a new format?
 
-Slime world format is really good, it helps with saving up data volume storage with its usage on compression and faster world serialize and deserialize, a big problem of it becomes when you have a very high load world, this makes the world take a few hundred ms to deserialize completely, mainly due to tile entities.
+Slime world format is really good, it helps with saving up data volume storage with its usage on compression and faster world serialize and deserialize, a big problem of it becomes when you have a very high byte volume world, this makes the world take a few hundred ms to deserialize completely, mainly due to tile entities.
 
 With this new format the idea is to split the data between chunks of byte arrays, instead of processing the chunks and tile entities all single-threaded, we will do so by doing it with parallel computation, this way we reduce the loading time of a world.
 
