@@ -16,10 +16,11 @@ This allows parallel processing, here is an example:
 
 Let's say that you have many tile entities in your world, and they are "spread" over the map, this way you can split the load of deserializing it completely on multiple threads, example:
 
+# Performancec & Benchmark
 
-```java
+5 benchmarks were ran in a row with the same data, total of 64 chunks & each chunk with random data generated, around 8KiB of data on each pack.
 
-5 benchmarks in a row with the same data, total of 64 chunks & each chunk with random data generated, around 8KiB of data on each pack.
+```yml
 
 5512.262 SINGLE
 133.0859 MULTI (2 threads)
@@ -57,7 +58,7 @@ Let's say that you have many tile entities in your world, and they are "spread" 
 Its a good improvement on speed, this is specifically going to target improvement of speed on tile entities, as deserialization of the normal block side is pretty damn fast already, the issue is with tile entities (such as chests, shulker boxes, etc).
 
 Now, for some proof of concept, we will show with 256 chunks, quick look:
-
+```yml
 979.8095 SINGLE
 493.9498 MULTI (2 threads)
 272.3524 MULTI (4 threads)
@@ -65,5 +66,5 @@ Now, for some proof of concept, we will show with 256 chunks, quick look:
 193.2013 MULTI (16 threads)
 184.8947 MULTI (32 threads)
 189.2698 MULTI (64 threads)
-
+```
 As you can see, the most benefitial thread number should be around 16.
