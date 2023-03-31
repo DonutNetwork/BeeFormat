@@ -20,8 +20,10 @@ Let's say that you have many tile entities in your world, and they are "spread" 
 
 5 benchmarks were ran in a row with the same data, total of 64 chunks & each chunk with random data generated, around 8KiB of data on each pack.
 
+Deserialization 
 ```yml
 
+Deserialization (Lower = faster, time unit = ms)
 5512.262 SINGLE
 133.0859 MULTI (2 threads)
 65.334 MULTI (4 threads)
@@ -59,6 +61,9 @@ Its a good improvement on speed, this is specifically going to target improvemen
 
 Now, for some proof of concept, we will show with 256 chunks, quick look:
 ```yml
+
+Deserialization (Lower = faster, time unit = ms)
+
 979.8095 SINGLE
 493.9498 MULTI (2 threads)
 272.3524 MULTI (4 threads)
