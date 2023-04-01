@@ -73,3 +73,20 @@ Deserialization (Lower = faster, time unit = ms)
 189.2698 MULTI (64 threads)
 ```
 As you can see, the most benefitial thread number should be around 16.
+
+# Serialization format & code example:
+
+Currently the slime format serializes all tile entities and chunks on 1 single chunk byte array, here is a sample of the code for tile entities:
+
+![image](https://user-images.githubusercontent.com/56891617/229285988-f937ecc8-d91f-45f5-9c96-74c8603dd397.png)
+
+We do the same, but in different threads, parallel work, with the Executors.workingSteal executor, example of code:
+
+![image](https://user-images.githubusercontent.com/56891617/229286030-ea854f37-0ea6-4414-b8fa-6410428dc86e.png)
+![image](https://user-images.githubusercontent.com/56891617/229286055-ba5a2d70-cd79-4ff5-b981-d82b4284254a.png)
+
+This way, when we deserialize, we will do almost the same for deserialization, except for the fact that the actual reading of the chunks of bytearrays written at the end (on following picture), will be read syncronously, like the rest of the data, except for chunk deserialization and tile entity processing).
+
+![image](https://user-images.githubusercontent.com/56891617/229286115-ac5ffda6-2a5e-43f0-8154-5fb3b44a7be1.png)
+
+
